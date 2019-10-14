@@ -21,6 +21,7 @@ class App extends Component {
     this.tps = new jsTPS();
     this.number = new Num();
     this.action = 0;
+    this.unitTest=false;
   }
   state = {
     currentScreen: AppScreen.HOME_SCREEN,
@@ -113,6 +114,17 @@ class App extends Component {
     unitTest.testUndo();
     unitTest.testClear();
     console.log("unit testing ran fine");
+    this.unitTest=true;
+    this.unitTestResult();
+    this.refresh();
+  }
+
+  unitTestResult = () =>{
+    console.log(this.unitTest===true);
+    if(this.unitTest===true)
+      return "Passed"
+    else if(this.unitTest===false)
+      return "Not Run Yet"
   }
 
   render() {
@@ -121,6 +133,7 @@ class App extends Component {
         return (
           <div >
               <h1>jsTPS TESTER</h1>
+              <div>Unit Test:{this.unitTestResult()}</div>
               <div>Current Number:{this.numValue()}</div>
               <div>CURRENT jsTPS:</div>
               <div>{this.tps.toString()}</div>
