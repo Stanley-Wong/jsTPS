@@ -7,14 +7,15 @@ export class OrMask_Transaction{
     }
 
     doTransaction() {
-        this.num.orMask(mask);
+        this.num.orMask(this.mask);
     }
 
     undoTransaction() {
-        this.num.setNum(intNum);
+        console.log("this runs")
+        this.num.setNum(this.intNum);
     }
 
     toString() {
-        return "Or Mask " + mask;
+        return "Or Mask " + this.mask;
     }
 }
