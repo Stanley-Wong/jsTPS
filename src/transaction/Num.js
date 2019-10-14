@@ -5,7 +5,7 @@ export class Num{
     }
 
     setNum(initNum) {
-        num = initNum;
+        this.num = initNum;
     }
 
     getNum(){
@@ -13,10 +13,10 @@ export class Num{
     }
 
     andMask(mask) {
-        num = num & mask;
+        this.num = this.num & mask;
     }
 
     orMask(mask) {
-        num = num | mask;
+        this.num = this.num | mask;
     }
 }

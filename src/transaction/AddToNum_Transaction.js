@@ -12,6 +12,7 @@ export class AddToNum_Transaction{
     }
 
     undoTransaction(){
+        console.log("undo ran")
         let oldNum = this.num.getNum();
         let newNum = oldNum-this.amountToAdd;
         this.num.setNum(newNum);

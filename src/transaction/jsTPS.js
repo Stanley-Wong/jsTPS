@@ -1,6 +1,5 @@
 
-
-class jsTPS{
+export class jsTPS{
 
     constructor() {
         this.transactions = new Array();
@@ -18,19 +17,19 @@ class jsTPS{
     }
 
     addTransaction(transaction) {
-        if((this.mostRecentTransaction<0)||(this.mostRecentTransaction <(this.transactions.size()-1))) {
-            for(i=transactions.size()-1; i>this.mostRecentTransaction; i--) {
+        if((this.mostRecentTransaction<0)||(this.mostRecentTransaction <(this.transactions.length-1))) {
+            for(let i = this.transactions.length-1; i>this.mostRecentTransaction; i--) {
                 this.transactions.splice(i,1);
             }
         }
         this.transactions.push(transaction);
-        doTransaction();
+        this.doTransaction();
     }
 
     doTransaction() {
-        if(this.hasTransactionRedo()) {
+        if(this.hasTransactionToRedo()) {
             this.performingDo = true;
-            let transaction = transactions.get(this.mostRecentTransaction+1);
+            let transaction = this.transactions[this.mostRecentTransaction+1];
             //this doTransaction is the transaction that belongs to the object, not this class
             transaction.doTransaction();
             this.mostRecentTransaction++;
@@ -40,7 +39,7 @@ class jsTPS{
 
     peekUndo() {
         if(this.hasTransactionToUndo()) {
-            return this.transactions.get(this.mostRecentTransaction);
+            return this.transactions[this.mostRecentTransaction];
         } else {
             return null;
         }
@@ -48,7 +47,7 @@ class jsTPS{
 
     peekDo() {
         if(this.hasTransactionToRedo()) {
-            return this.transactions.get(this.mostRecentTransaction+1);
+            return this.transactions[this.mostRecentTransaction+1];
         } else {
             return null;
         }
@@ -57,7 +56,7 @@ class jsTPS{
     undoTransaction() {
         if(this.hasTransactionToUndo()) {
             this.performingUndo = true;
-            let transaction = transactions.get(this.mostRecentTransaction); 
+            let transaction = this.transactions[this.mostRecentTransaction]; 
             //this undoTransaction is the transaction that belongs to the object, not this class
             transaction.undoTransaction();
             this.mostRecentTransaction--;
@@ -71,7 +70,7 @@ class jsTPS{
     }
 
     getSize() {
-        return this.transactions.size();
+        return this.transactions.length;
     }
 
     getRedoSize() {
@@ -87,15 +86,15 @@ class jsTPS{
     }
 
     hasTransactionToRedo() {
-        return this.mostRecentTransaction < (this.transactions.size()-1);
+        return this.mostRecentTransaction < (this.transactions.length-1);
     }
 
     toString() {
-        let text = "--Number of Transactions: " + this.transactions.size() + "\n";
+        let text = "--Number of Transactions: " + this.transactions.length + "\n";
         text = text+"--Current Index on Stack: " + this.mostRecentTransaction + "\n";
         text = text+"--Current Transaction Stack:\n";
-        for (i = 0; i <= this.mostRecentTransaction; i++) {
-            jsT = this.transactions.get(i);
+        for (let i = 0; i <= this.mostRecentTransaction; i++) {
+            let jsT = this.transactions[i];
             text = text+"----" + jsT.toString() + "\n";
         }
         return text;
@@ -103,3 +102,5 @@ class jsTPS{
 
 
 }
+
+export default jsTPS
