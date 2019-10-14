@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import jsTPS from './transaction/jsTPS'
 import {Num} from './transaction/Num'
 import {AddToNum_Transaction} from './transaction/AddToNum_Transaction'
 import {AndMask_Transaction} from './transaction/AndMask_Transaction'
 import {OrMask_Transaction} from './transaction/OrMask_Transaction'
+import { jsTPS_Unit_Tests } from './transaction/jsTPS_Unit_Tests';
 
 
 
@@ -104,6 +104,17 @@ class App extends Component {
     return this.number.getNum();
   }
 
+  unitTesting = () =>{
+    let unitTest = new jsTPS_Unit_Tests();
+    unitTest.testAdd();
+    unitTest.testAndMask();
+    unitTest.testOrMask();
+    unitTest.testRedo();
+    unitTest.testUndo();
+    unitTest.testClear();
+    console.log("unit testing ran fine");
+  }
+
   render() {
     switch(this.state.currentScreen){
       case AppScreen.HOME_SCREEN:
@@ -120,6 +131,7 @@ class App extends Component {
               <button onClick={this.redo}>Redo a Transaction</button>
               <button onClick={this.clear}>Clear All Transaction</button>
               <button onClick={this.reset}>Reset Num and Transaction</button>
+              <button onClick={this.unitTesting}>unit testing</button>
           </div>
         )
       case AppScreen.ADD_SCREEN:
@@ -139,6 +151,10 @@ class App extends Component {
         return (
           <div></div>
         )
+      default:
+          return (
+            <div>ERROR</div>
+          )
     }
   }
 }

@@ -4,9 +4,6 @@ export class AndMask_Transaction{
         this.num = initNum;
         this.intNum = initIntNum;
         this.mask = initMask;
-
-        console.log(initNum)
-        console.log(this.intNum)
     }
 
     doTransaction() {

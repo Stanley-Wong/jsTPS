@@ -11,7 +11,6 @@ export class OrMask_Transaction{
     }
 
     undoTransaction() {
-        console.log("this runs")
         this.num.setNum(this.intNum);
     }
 
